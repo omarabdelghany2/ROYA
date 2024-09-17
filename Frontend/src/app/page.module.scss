@@ -1,0 +1,47 @@
+@use "./styles/reusable.all.scss" as *;
+
+
+
+.container {
+    background-color: transparent;
+    height: 100vh;
+    padding: 1rem;
+    @include flex(column);
+    gap: 2rem;
+
+
+    .switch {
+        align-self: flex-end;
+    }
+
+    .title {
+        text-transform: uppercase;
+        color: $color-primary-light;
+        line-height: 3.5rem;
+        position: relative;
+        height: 8rem;
+
+
+    
+
+        .up {
+            font-size: 5rem;
+            font-weight: 500;
+        }
+        .down {
+            position: absolute;
+            left: 3rem;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+
+    }
+    
+    .pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+}
