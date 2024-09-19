@@ -35,6 +35,15 @@ const Header = () => {
           <div className={styles.menu} onClick={toggleMenu}>
              { isOpen ? <HiX /> : <IoMenu /> }
           </div>
+          <div className={styles.navigator}>
+            <div className={styles.left}>
+              <Link href="/">Home</Link>
+              <Link href="/">Products</Link>
+            </div>
+            <div className={styles.mid}>
+              <Link href="/">Contact us</Link>
+            </div>
+          </div>
           <div className={styles.social}>
             <div className={styles.icon}><FaInstagram /></div>
             <div className={styles.icon}><FaXTwitter /></div>

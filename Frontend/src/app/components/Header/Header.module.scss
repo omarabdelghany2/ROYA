@@ -10,6 +10,9 @@
     .logo {
       background-color: $color-primary-light;
       padding: 1rem 1.5rem;
+      img {
+        object-fit: contain;
+      }
     }
 
     .base {
@@ -18,9 +21,57 @@
       height: 100%;
       padding: 0 2%;
 
+     
+
       .menu {
-        color: $color-primary-light;
+        color: $font;
         font-size: 2.5rem;
+
+        @include breakpoint(xs) {
+          display: none;
+        }
+      }
+
+      .navigator {
+        display: none;
+
+
+        @include breakpoint(xs) {
+          @include flex(false, center, space-between);
+          width: 50%;
+          
+          .left {
+            @include flex(false, center);
+            gap: 1rem;
+            color: $font;
+            a { 
+              text-decoration: none;
+              font-size: 1.5rem;
+              color: $font;
+              transition: $transition;
+              border-bottom: 1px solid transparent;
+
+              &:hover {
+                // color: $color-primary-light;
+                border-bottom: 1px solid $font;
+              }
+            }
+          }
+  
+          .mid {
+            a { 
+              text-decoration: none;
+              font-size: 1.5rem;
+              color: $font-common;
+              transition: $transition;
+              color: $font;
+              border-bottom: 1px solid transparent;
+              &:hover {
+                border-bottom: 1px solid $font;
+              }
+            }
+          }
+        }
       }
 
       .social {
@@ -28,7 +79,7 @@
         gap: .5rem;
         .icon {
           font-size: 1.5rem;
-          color: $color-primary-light;
+          color: $font;
         }
       }
 
@@ -46,12 +97,16 @@
       background-color: $color-secondary-light;
       z-index: 99;
 
+      @include breakpoint(xs) {
+        display: none;
+      }
+
       .mobilelink {
         @include flex(false, center, space-between);
         padding: 1rem;
         border-bottom: 1px solid $color-tertiary-light;
         a {
-          color: $color-primary-light;
+          color: $font;
           text-decoration: none;
           font-size: 1.5rem;
           text-transform: uppercase;

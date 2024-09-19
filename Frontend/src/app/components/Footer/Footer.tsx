@@ -1,3 +1,5 @@
+"use client";
+
 import Image from 'next/image'
 import styles from './Footer.module.scss'
 import { FaInstagram } from "react-icons/fa";
@@ -7,9 +9,14 @@ import { FaLinkedin } from "react-icons/fa";
 import { TbDeviceLandlinePhone } from "react-icons/tb";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { useTheme } from 'next-themes';
+
 
 
 const Footer = () => {
+  const { setTheme, resolvedTheme } = useTheme()
+
+
   return (
     <footer className={styles.footer}>
         <div className={styles.info}>
@@ -34,7 +41,7 @@ const Footer = () => {
         </div>
         </div>
         <div className={styles.logo}>
-            <Image width={70} height={85} src={"/svgs/black-logo.svg"} alt="Roya technology logo" />
+            <Image width={70} height={85} src={`${resolvedTheme === "dark" ? "/svgs/white-logo.svg": "/svgs/black-logo.svg"}`} alt="Roya technology logo" />
         </div>
     </footer>
   )

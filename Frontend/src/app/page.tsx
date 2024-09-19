@@ -18,7 +18,7 @@ const slidesInfo = [
     description: "is an Egyptian limited liability company has a past experience in engineered Process Automation & Instrumentation",
     path: "/",
     link: "solutions",
-    image: "/images/earth.jpg",
+    image: "/images/board.jpg",
     id: 2
   },
   {
@@ -26,7 +26,7 @@ const slidesInfo = [
     description: "is an Egyptian limited liability company has a past experience in engineered Process Automation & Instrumentation",
     path: "/",
     link: "solutions",
-    image: "/images/earth.jpg",
+    image: "/images/motherboard.jpg",
     id: 3
   }
 ]
@@ -46,8 +46,9 @@ const page = () => {
         <Slider slidesInfo={slidesInfo} />
       </div>
       <div className={styles.pattern}>
-        <Image src={"/background/pattern.webp"} height={300} width={300} alt='Pattern' />
+        <Image src={"/background/pattern.webp"} height={400} width={400} alt='Pattern' />
       </div>
+      <div className={styles.square}></div>
     </main>
   )
 }
