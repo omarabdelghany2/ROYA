@@ -1,0 +1,94 @@
+from django.http import JsonResponse
+from .models import Category
+from .models import Contact
+from .models import Project
+from django.shortcuts import get_object_or_404
+
+def category_list(request):
+    # Get all categories from the database
+
+    try:
+        categories = Category.objects.all()
+
+        # Serialize categories into a list of dictionaries
+        categories_data = [
+            {
+                'id': category.id,
+                'name': category.name,
+                'description': category.description,
+                'content': category.content,
+                'image': category.image.url if category.image else None
+            }
+            for category in categories
+        ]
+
+        # Return JSON response
+        return JsonResponse({'categories': categories_data},status=200)
+    except Category.DoesNotExist:
+        return JsonResponse({'error': 'Category information does not exist'}, status=404)
+    
+
+
+
+
+
+def contact_info(request):
+    try:
+        # Retrieve all contact entries
+        contacts = Contact.objects.all()
+
+        # Serialize contact data into a list of dictionaries
+        contact_data = [
+            {
+                'mobile_number': contact.mobile_number,
+                'instagram_account': contact.instagram_account,
+                'facebook_account': contact.facebook_account,
+                'linkedin_account': contact.linkedin_account
+            }
+            for contact in contacts
+        ]
+
+        # Return JSON response with status and HTTP status code 200 (OK)
+        return JsonResponse({'contact': contact_data}, status=200)
+
+    except Exception as e:
+        # Handle any other exceptions
+        return JsonResponse({'message': str(e)}, status=500)
+
+
+
+def project_list_by_category(request, category_name):
+    try:
+        # Retrieve the category instance by name (case-insensitive)
+        category = get_object_or_404(Category, name__iexact=category_name)
+
+        # Retrieve all projects associated with the category
+        projects = Project.objects.filter(category=category)
+
+        # Serialize project data into a list of dictionaries
+        project_data = [
+            {
+                'name': project.name,
+                'description': project.description,
+                'image': project.image.url if project.image else None,  # Include image URL if exists
+                'category_name': project.category.name  # Include category name
+            }
+            for project in projects
+        ]
+
+        # Return JSON response with status and HTTP status code 200 (OK)
+        return JsonResponse({
+            'projects': project_data
+        }, status=200)
+
+    except Category.DoesNotExist:
+        return JsonResponse({
+            'status': 'error',
+            'message': 'Category not found.'
+        }, status=404)
+
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': str(e)
+        }, status=500)
