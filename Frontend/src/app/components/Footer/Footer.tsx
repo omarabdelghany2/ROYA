@@ -10,12 +10,18 @@ import { TbDeviceLandlinePhone } from "react-icons/tb";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
 
 
 
 const Footer = () => {
   const { setTheme, resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false);
 
+  useEffect(() => {
+    // Ensures this runs only on the client side
+    setMounted(true);
+  }, []);
 
   return (
     <footer className={styles.footer}>
@@ -41,7 +47,7 @@ const Footer = () => {
         </div>
         </div>
         <div className={styles.logo}>
-            <Image width={70} height={85} src={`${resolvedTheme === "dark" ? "/svgs/white-logo.svg": "/svgs/black-logo.svg"}`} alt="Roya technology logo" />
+            { mounted && <Image width={70} height={85} src={`${resolvedTheme === "dark" ? "/svgs/white-logo.svg": "/svgs/black-logo.svg"}`} alt="Roya technology logo" />}
         </div>
     </footer>
   )

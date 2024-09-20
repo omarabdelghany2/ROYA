@@ -8,7 +8,7 @@ const slidesInfo = [
   {
     title: "software development",
     description: "is an Egyptian limited liability company has a past experience in engineered Process Automation & Instrumentation",
-    path: "/",
+    path: "/departments",
     link: "solutions",
     image: "/images/earth.jpg",
     id: 1
@@ -16,7 +16,7 @@ const slidesInfo = [
   {
     title: "software development",
     description: "is an Egyptian limited liability company has a past experience in engineered Process Automation & Instrumentation",
-    path: "/",
+    path: "/departments",
     link: "solutions",
     image: "/images/board.jpg",
     id: 2
@@ -24,7 +24,7 @@ const slidesInfo = [
   {
     title: "software development",
     description: "is an Egyptian limited liability company has a past experience in engineered Process Automation & Instrumentation",
-    path: "/",
+    path: "/departments",
     link: "solutions",
     image: "/images/motherboard.jpg",
     id: 3

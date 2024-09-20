@@ -26,20 +26,24 @@
             font-size: 1.5rem;
         }
 
-        .link {
+        .linker {
             margin-top: auto;
-            background-color: transparent;
-            padding: 1rem;
-            border: 2px solid $color-primary-light;
-            color: $font;
-            font-size: 1.5rem;
-            transition: $transition;
-            cursor: pointer;
-            
+            .link {
+                
+                background-color: transparent;
+                padding: 1rem;
+                border: 2px solid $color-primary-light;
+                color: $font;
+                font-size: 1.5rem;
+                transition: $transition;
+                cursor: pointer;
+                width: 100%;
+                
 
-            &:hover {
-                color: $font-common;
-                background-color: $color-primary-light;
+                &:hover {
+                    color: $font-common;
+                    background-color: $color-primary-light;
+                }
             }
         }
     }
