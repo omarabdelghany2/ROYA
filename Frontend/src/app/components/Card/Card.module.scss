@@ -1,0 +1,47 @@
+@use "../../styles/reusable.all.scss" as *;
+
+
+.card {
+    background-color: $color-secondary-light;
+    // width: 30rem;
+    border: 2px solid $color-tertiary-light;
+    @include flex(column,center);
+    .top {
+        img {
+            object-fit: cover;
+        }
+    }
+
+    .bot {
+        @include flex(column);
+        gap: 1rem;
+        padding: 1rem;
+        height: 20rem;
+        .title {
+            font-size: 2rem;
+            font-weight: 500;
+        }
+
+        .description {
+            font-size: 1.5rem;
+        }
+
+        .link {
+            margin-top: auto;
+            background-color: transparent;
+            padding: 1rem;
+            border: 2px solid $color-primary-light;
+            color: $font;
+            font-size: 1.5rem;
+            transition: $transition;
+            cursor: pointer;
+            
+
+            &:hover {
+                color: $font-common;
+                background-color: $color-primary-light;
+            }
+        }
+    }
+
+}

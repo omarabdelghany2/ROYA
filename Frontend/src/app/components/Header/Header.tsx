@@ -38,7 +38,7 @@ const Header = () => {
           <div className={styles.navigator}>
             <div className={styles.left}>
               <Link href="/">Home</Link>
-              <Link href="/">Products</Link>
+              <Link href="/">Departments</Link>
             </div>
             <div className={styles.mid}>
               <Link href="/">Contact us</Link>
@@ -60,7 +60,7 @@ const Header = () => {
                 <RiArrowDropDownLine />
                 </li>
               <li className={styles.mobilelink} >
-                <Link href={"/"} >Products</Link>
+                <Link href={"/"} >Departments</Link>
                 <RiArrowDropDownLine />
               </li>
               <li className={styles.mobilelink} >
