@@ -13,9 +13,14 @@ class Category(models.Model):
 
 class Contact(models.Model):
     mobile_number = models.CharField(max_length=20, blank=False, null=False)
+    landline = models.CharField(max_length=20, blank=True, null=False)
     instagram_account = models.CharField(max_length=255, blank=True, null=True)
     facebook_account = models.CharField(max_length=255, blank=True, null=True)
     linkedin_account = models.CharField(max_length=255, blank=True, null=True)
+    twitter_account = models.CharField(max_length=255, blank=True, null=True)
+    email = models.EmailField(max_length=254, blank=True, null=True)
+
+
 
     def __str__(self):
         return f'Contact info: {self.mobile_number}'
@@ -27,14 +32,15 @@ class Contact(models.Model):
         super(Contact, self).save(*args, **kwargs)
 
 
+
 class Project(models.Model):
+    id = models.AutoField(primary_key=True,unique=True)  # Custom ID field as the primary key
     name = models.CharField(max_length=255)
     description = models.TextField(blank=False, null=False)
-    image = models.ImageField(upload_to='project_images/', blank=True, null=True)  # Add image field
+    image = models.ImageField(upload_to='project_images/', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='projects')
 
     def __str__(self):
-        return f'{self.name} ({self.category.name})'        
-    
+        return f'{self.name} ({self.category.name})'
 
     

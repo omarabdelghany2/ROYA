@@ -41,9 +41,13 @@ def contact_info(request):
         contact_data = [
             {
                 'mobile_number': contact.mobile_number,
+                'landline':contact.landline,
                 'instagram_account': contact.instagram_account,
                 'facebook_account': contact.facebook_account,
-                'linkedin_account': contact.linkedin_account
+                'linkedin_account': contact.linkedin_account,
+                'twitter_account': contact.twitter_account,
+                'email':contact.email,
+
             }
             for contact in contacts
         ]
@@ -68,6 +72,7 @@ def project_list_by_category(request, category_name):
         # Serialize project data into a list of dictionaries
         project_data = [
             {
+                'id':project.id,
                 'name': project.name,
                 'description': project.description,
                 'image': project.image.url if project.image else None,  # Include image URL if exists
@@ -88,6 +93,33 @@ def project_list_by_category(request, category_name):
         }, status=404)
 
     except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': str(e)
+        }, status=500)
+    
+
+def project_detail(request, id):
+    try:
+        # Retrieve the project by id
+        project = get_object_or_404(Project, id=id)
+
+        # Serialize project data
+        project_data = {
+            'id': project.id,
+            'name': project.name,
+            'description': project.description,
+            'image': project.image.url if project.image else None,  # Include image URL if exists
+            'category_name': project.category.name  # Include category name
+        }
+
+        # Return JSON response with status and HTTP status code 200 (OK)
+        return JsonResponse({
+            'project': project_data
+        }, status=200)
+
+    except Exception as e:
+        # Handle any other exceptions
         return JsonResponse({
             'status': 'error',
             'message': str(e)
