@@ -3,6 +3,9 @@ import styles from "./page.module.scss"
 import Image from 'next/image'
 import Modes from './components/Modes/Modes'
 import Slider  from './components/Slider/Slider'
+import axios from "axios"
+import { getCategories } from './utils/api'
+
 
 const slidesInfo = [
   {
@@ -32,7 +35,9 @@ const slidesInfo = [
 ]
 
 // 
-const page = () => {
+const  page = async () => {
+  let categories = await getCategories()
+
   return (
     <main className={styles.container}>
       <div className={styles.switch}>
@@ -43,7 +48,7 @@ const page = () => {
         <div className={styles.down}>technology</div>
       </div>
       <div className={styles.slider}>
-        <Slider slidesInfo={slidesInfo} />
+        <Slider slidesInfo={categories} />
       </div>
       <div className={styles.pattern}>
         <Image src={"/background/pattern.webp"} height={400} width={400} alt='Pattern' />

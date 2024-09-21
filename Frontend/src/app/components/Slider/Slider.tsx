@@ -11,15 +11,15 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { FaExpandAlt } from "react-icons/fa";
 import { useState } from 'react';
 import { Swiper as SwiperType } from 'swiper'; // Import the Swiper type
+import { Server } from "../../utils/server"
 
 interface Slides  {
  slidesInfo: {
-  title: string;
-  description: string;
-  path: string;
-  link: string;
-  image: string;
   id: number;
+  name: string;
+  description: string;
+  content: string;
+  image: string;
  }[]
 }
 
@@ -46,13 +46,13 @@ const Slider: React.FC<Slides> = ({ slidesInfo }) => {
       >
         {
           slidesInfo.map(itm => (
-            <SwiperSlide key={itm.id} className={styles.swiperbody} style={{ backgroundImage: `url(${itm.image})` }} >
+            <SwiperSlide key={itm.id} className={styles.swiperbody} style={{ backgroundImage: `url(${Server.media}${itm.image})` }} >
               <div className={styles.head}>
-                <div className={styles.title}>{itm.title}</div>
+                <div className={styles.title}>{itm.name}</div>
                 <div className={styles.info}>{itm.description}</div>
                 <div className={styles.path}>
                   <div className={styles.link}>
-                    <Link href={itm.path}>{itm.link}</Link>
+                    <Link href={`/${itm.name}`}>SOLUTIONS</Link>
                   </div>
                   <div className={styles.icon}>
                     <MdKeyboardArrowRight />
