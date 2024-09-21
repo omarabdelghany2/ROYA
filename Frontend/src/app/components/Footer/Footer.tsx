@@ -12,12 +12,19 @@ import { MdEmail } from "react-icons/md";
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
+interface Contact {
+  info: {
+    mobile_number: string;
+    instagram_account: string;
+    facebook_account: string;
+    linkedin_account: string;
+  }
+}
 
-
-const Footer = () => {
+const Footer: React.FC<Contact> = ({ info }) => {
   const { setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false);
-
+  
   useEffect(() => {
     // Ensures this runs only on the client side
     setMounted(true);
@@ -29,16 +36,16 @@ const Footer = () => {
         <div className={styles.contact}>
             <p>
                 <a href="tel:+2033087744"><TbDeviceLandlinePhone /> +2033087744</a>
-                <a href="tel:+201066684474"><FaPhoneAlt /> +20-010 666 84474</a>
+                <a href="tel:+201066684474"><FaPhoneAlt /> {info.mobile_number}</a>
                 <a href="mailto:info@roya-technology.com"><MdEmail /> info@roya-technology.com</a>
             </p>
         </div>
         
         <div className={styles.socialmedia}>
-            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><FaInstagram /></a>
+            <a href={`${info.instagram_account}`} target="_blank" aria-label="Instagram"><FaInstagram /></a>
             <a href="https://x.com" target="_blank" aria-label="X (formerly Twitter)"><FaXTwitter /></a>
-            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><FaFacebookF /></a>
-            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><FaLinkedin /></a>
+            <a href={`${info.facebook_account}`} target="_blank" aria-label="Facebook"><FaFacebookF /></a>
+            <a href={`${info.linkedin_account}`} target="_blank" aria-label="LinkedIn"><FaLinkedin /></a>
         </div>
         <div className={styles.description}>
             <p>
