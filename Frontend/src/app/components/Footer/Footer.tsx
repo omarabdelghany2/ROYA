@@ -14,15 +14,18 @@ import { useEffect, useState } from 'react';
 
 interface Contact {
   info: {
+    landline: string;
     mobile_number: string;
+    twitter_account: string;
     instagram_account: string;
     facebook_account: string;
     linkedin_account: string;
+    email: string;
   }
 }
 
 const Footer: React.FC<Contact> = ({ info }) => {
-  const { setTheme, resolvedTheme } = useTheme()
+  const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false);
   
   useEffect(() => {
@@ -35,15 +38,15 @@ const Footer: React.FC<Contact> = ({ info }) => {
         <div className={styles.info}>
         <div className={styles.contact}>
             <p>
-                <a href="tel:+2033087744"><TbDeviceLandlinePhone /> +2033087744</a>
+                <a href="tel:+2033087744"><TbDeviceLandlinePhone /> {info.landline}</a>
                 <a href="tel:+201066684474"><FaPhoneAlt /> {info.mobile_number}</a>
-                <a href="mailto:info@roya-technology.com"><MdEmail /> info@roya-technology.com</a>
+                <a href="mailto:info@roya-technology.com"><MdEmail /> {info.email}</a>
             </p>
         </div>
         
         <div className={styles.socialmedia}>
             <a href={`${info.instagram_account}`} target="_blank" aria-label="Instagram"><FaInstagram /></a>
-            <a href="https://x.com" target="_blank" aria-label="X (formerly Twitter)"><FaXTwitter /></a>
+            <a href={`${info.twitter_account}`} target="_blank" aria-label="X (formerly Twitter)"><FaXTwitter /></a>
             <a href={`${info.facebook_account}`} target="_blank" aria-label="Facebook"><FaFacebookF /></a>
             <a href={`${info.linkedin_account}`} target="_blank" aria-label="LinkedIn"><FaLinkedin /></a>
         </div>

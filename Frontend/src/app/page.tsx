@@ -3,7 +3,6 @@ import styles from "./page.module.scss"
 import Image from 'next/image'
 import Modes from './components/Modes/Modes'
 import Slider  from './components/Slider/Slider'
-import axios from "axios"
 import { getCategories } from './utils/api'
 
 
@@ -36,7 +35,7 @@ const slidesInfo = [
 
 // 
 const  page = async () => {
-  let categories = await getCategories()
+  const categories = await getCategories()
 
   return (
     <main className={styles.container}>

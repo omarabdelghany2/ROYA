@@ -6,10 +6,10 @@
 .footer {
 
     background-color: $color-tertiary-light;
-    padding: 2rem;
     @include flex(column);
     gap: 5rem;
-
+    padding: 1rem;
+    
     @include breakpoint(xs) {
         flex-direction: row;
         padding: 4rem
@@ -17,7 +17,7 @@
     
     .info {
         @include flex(column);
-        gap: 4rem;
+        gap: 2rem;
         .contact {
             p {
                 @include flex(column);
@@ -58,7 +58,7 @@
 
     .logo {
         img {
-            object-fit: contain;
+            object-fit: cover;
         }
         @include breakpoint(xs) {
             order: -1;

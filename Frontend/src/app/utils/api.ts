@@ -23,10 +23,13 @@ export const getCategories = async () => {
 
 interface Contact {
     contact: {
+      landline: string;
       mobile_number: string;
+      twitter_account: string;
       instagram_account: string;
       facebook_account: string;
       linkedin_account: string;
+      email: string;
     }[]
 }
 
@@ -42,6 +45,7 @@ export const getContact = async () => {
 
 interface Projects {
     projects: {
+      id: number;
       name: string;
       description: string;
       image: string;
@@ -50,10 +54,35 @@ interface Projects {
 }
 
 
-export const getProjects = async (projectName: string) => {
-    const response = await fetch(`${BACKEND_URL}/projects/${projectName}`)
+
+export const getProjects = async (departmentName: string) => {
+    const response = await fetch(`${BACKEND_URL}/projects/${departmentName}`)
     const projects: Projects = await response.json()
     if (!projects) notFound()
     return projects.projects
 }
+
+
+//------------------------------------------------------------------------
+
+interface Project {
+  status: string;
+  project: {
+    id: number;
+    name: string;
+    description: string;
+    image: string;
+    category_name: string;
+  }
+}
+
+
+export const getProject = async (projectId: string) => {
+  const response = await fetch(`${BACKEND_URL}/project-id/${projectId}`)
+  const projects: Project = await response.json()
+  if (!projects) notFound()
+  return projects.project
+}
+
+
 

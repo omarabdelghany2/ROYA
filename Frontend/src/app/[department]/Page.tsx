@@ -4,18 +4,18 @@ import { getProjects } from '../utils/api'
 
 
 
-const  Page = async ({ params }: { params: { department: string } }) => {
+const  page = async ({ params }: { params: { department: string } }) => {
   const projects = await getProjects(params.department)
 
   return (
     <section className={styles.departments}>
       {
         projects.map(project => (
-          <Card key={project.name} />
+          <Card key={project.id} category={params.department} project={project} />
         ))
       }
     </section>
   )
 }
 
-export default Page
+export default page

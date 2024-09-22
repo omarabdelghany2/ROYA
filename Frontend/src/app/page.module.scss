@@ -9,6 +9,7 @@
     @include flex(column);
     gap: 2rem;
     max-width: 150rem;
+    min-height: 100vh;
     @include breakpoint(xs) {
         align-items: center;
         margin: 0 auto;

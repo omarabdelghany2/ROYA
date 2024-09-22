@@ -4,6 +4,7 @@
 .card {
     background-color: $color-secondary-light;
     // width: 30rem;
+    max-height: 50rem;
     border: 2px solid $color-tertiary-light;
     @include flex(column,center);
     .top {
@@ -24,6 +25,12 @@
 
         .description {
             font-size: 1.5rem;
+            display: -webkit-box;        /* Required for line clamping */
+            -webkit-box-orient: vertical; /* Required for line clamping */
+            overflow: hidden;           /* Hide overflow */
+            -webkit-line-clamp: 3;      /* Number of lines to show before truncating */
+            max-height: 4.5em;          /* Set max height based on line height */
+            line-height: 1.5em;    
         }
 
         .linker {
