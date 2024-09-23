@@ -77,13 +77,14 @@ WSGI_APPLICATION = 'RoyaBackend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_db',
-        'USER': 'django_user',
-        'PASSWORD': 'django_password',
-        'HOST': 'localhost',  # Docker runs PostgreSQL on localhost (for your machine)
-        'PORT': '5432',
+        'NAME': 'mydatabase',  # The name of your PostgreSQL database
+        'USER': 'myuser',      # Your PostgreSQL username
+        'PASSWORD': 'mypassword',  # Your PostgreSQL password
+        'HOST': 'localhost',   # Usually 'localhost' or the IP of your PostgreSQL server
+        'PORT': '5432',        # Default PostgreSQL port
     }
 }
+
 
 
 

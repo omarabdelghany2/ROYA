@@ -1,6 +1,6 @@
 
 
-export const BACKEND_URL = "http://localhost:8000"
+export const BACKEND_URL = "http://92.205.109.254:8000"
 
 
 

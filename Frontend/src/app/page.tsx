@@ -6,33 +6,6 @@ import Slider  from './components/Slider/Slider'
 import { getCategories } from './utils/api'
 
 
-const slidesInfo = [
-  {
-    title: "software development",
-    description: "is an Egyptian limited liability company has a past experience in engineered Process Automation & Instrumentation",
-    path: "/departments",
-    link: "solutions",
-    image: "/images/earth.jpg",
-    id: 1
-  },
-  {
-    title: "software development",
-    description: "is an Egyptian limited liability company has a past experience in engineered Process Automation & Instrumentation",
-    path: "/departments",
-    link: "solutions",
-    image: "/images/board.jpg",
-    id: 2
-  },
-  {
-    title: "software development",
-    description: "is an Egyptian limited liability company has a past experience in engineered Process Automation & Instrumentation",
-    path: "/departments",
-    link: "solutions",
-    image: "/images/motherboard.jpg",
-    id: 3
-  }
-]
-
 // 
 const  page = async () => {
   const categories = await getCategories()

@@ -12,7 +12,7 @@ interface Categories {
 }
 
 export const getCategories = async () => {
-    const response = await fetch(`${BACKEND_URL}/categories`)
+    const response = await fetch(`${BACKEND_URL}/categories`, { cache: "no-cache" })
     const category: Categories = await response.json()
     if (!category) notFound()
     return category.categories
@@ -35,8 +35,9 @@ interface Contact {
 
 
 export const getContact = async () => {
-    const response = await fetch(`${BACKEND_URL}/contact`)
+    const response = await fetch(`${BACKEND_URL}/contact`, { cache: "no-cache" })
     const contact: Contact = await response.json()
+    console.log(contact)
     if (!contact) notFound()
     return contact.contact[0]
 }
@@ -56,7 +57,7 @@ interface Projects {
 
 
 export const getProjects = async (departmentName: string) => {
-    const response = await fetch(`${BACKEND_URL}/projects/${departmentName}`)
+    const response = await fetch(`${BACKEND_URL}/projects/${departmentName}`, { cache: "no-cache" })
     const projects: Projects = await response.json()
     if (!projects) notFound()
     return projects.projects
@@ -78,7 +79,7 @@ interface Project {
 
 
 export const getProject = async (projectId: string) => {
-  const response = await fetch(`${BACKEND_URL}/project-id/${projectId}`)
+  const response = await fetch(`${BACKEND_URL}/project-id/${projectId}`, { cache: "no-cache" })
   const projects: Project = await response.json()
   if (!projects) notFound()
   return projects.project
