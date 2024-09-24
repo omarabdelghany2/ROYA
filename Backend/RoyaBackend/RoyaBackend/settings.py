@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'mydatabase',  # The name of your PostgreSQL database
         'USER': 'myuser',      # Your PostgreSQL username
         'PASSWORD': 'mypassword',  # Your PostgreSQL password
-        'HOST': 'localhost',   # Usually 'localhost' or the IP of your PostgreSQL server
+        'HOST': 'db',   # Usually 'localhost' or the IP of your PostgreSQL server
         'PORT': '5432',        # Default PostgreSQL port
     }
 }
