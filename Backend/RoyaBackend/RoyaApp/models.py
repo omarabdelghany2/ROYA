@@ -2,8 +2,7 @@ from django.db import models
 from django.core.exceptions import ValidationError
 class Category(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False,unique=True)  # Name cannot be empty
-    description = models.TextField(blank=False, null=False)           # Description cannot be empty
-    content = models.TextField()                                      # Content is optional
+    description = models.TextField(blank=False, null=False)           # Description cannot be empty                                 # Content is optional
     image = models.ImageField(upload_to='categories/', blank=False, null=False)  # Image cannot be empty
 
     def __str__(self):
@@ -34,13 +33,12 @@ class Contact(models.Model):
 
 
 class Project(models.Model):
-    id = models.AutoField(primary_key=True,unique=True)  # Custom ID field as the primary key
+    id = models.AutoField(primary_key=True, unique=True)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=False, null=False)
     image = models.ImageField(upload_to='project_images/', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='projects')
+    content = models.TextField(default='.', blank=True)  # New field with default value
 
     def __str__(self):
         return f'{self.name} ({self.category.name})'
-
-    

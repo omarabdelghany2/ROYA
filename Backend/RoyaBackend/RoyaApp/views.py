@@ -16,7 +16,7 @@ def category_list(request):
                 'id': category.id,
                 'name': category.name,
                 'description': category.description,
-                'content': category.content,
+
                 'image': category.image.url if category.image else None
             }
             for category in categories
@@ -76,7 +76,8 @@ def project_list_by_category(request, category_name):
                 'name': project.name,
                 'description': project.description,
                 'image': project.image.url if project.image else None,  # Include image URL if exists
-                'category_name': project.category.name  # Include category name
+                'category_name': project.category.name,  # Include category name
+                'content': project.content,
             }
             for project in projects
         ]
@@ -110,7 +111,9 @@ def project_detail(request, id):
             'name': project.name,
             'description': project.description,
             'image': project.image.url if project.image else None,  # Include image URL if exists
-            'category_name': project.category.name  # Include category name
+            'category_name': project.category.name,  # Include category name
+            'content': project.content,
+
         }
 
         # Return JSON response with status and HTTP status code 200 (OK)
@@ -124,3 +127,43 @@ def project_detail(request, id):
             'status': 'error',
             'message': str(e)
         }, status=500)
+    
+
+
+
+def project_all(request):
+    try:
+
+        # Retrieve all projects associated with the category
+        projects = Project.objects.all()
+
+        # Serialize project data into a list of dictionaries
+        project_data = [
+            {
+                'id':project.id,
+                'name': project.name,
+                'description': project.description,
+                'image': project.image.url if project.image else None,  # Include image URL if exists
+                'category_name': project.category.name,  # Include category name
+                'content': project.content,
+            }
+            for project in projects
+        ]
+
+        # Return JSON response with status and HTTP status code 200 (OK)
+        return JsonResponse({
+            'projects': project_data
+        }, status=200)
+
+    except Category.DoesNotExist:
+        return JsonResponse({
+            'status': 'error',
+            'message': 'Category not found.'
+        }, status=404)
+
+    except Exception as e:
+        return JsonResponse({
+            'status': 'error',
+            'message': str(e)
+        }, status=500)
+    
