@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from .models import Category
 from .models import Contact
 from .models import Project
+from .models import Logo
 from django.shortcuts import get_object_or_404
 
 def category_list(request):
@@ -16,7 +17,7 @@ def category_list(request):
                 'id': category.id,
                 'name': category.name,
                 'description': category.description,
-
+                'long_description':category.long_description,
                 'image': category.image.url if category.image else None
             }
             for category in categories
@@ -29,6 +30,27 @@ def category_list(request):
     
 
 
+def logos_list(request):
+    # Get all categories from the database
+
+    try:
+        logos = Logo.objects.all()
+
+        # Serialize categories into a list of dictionaries
+        logos_data = [
+            {
+                'id': logo.id,
+                'name': logo.name,
+                'image': logo.image.url if logo.image else None
+            }
+            for logo in logos
+        ]
+
+        # Return JSON response
+        return JsonResponse({'logos': logos_data},status=200)
+    except Logo.DoesNotExist:
+        return JsonResponse({'error': 'logo information does not exist'}, status=404)
+    
 
 
 
