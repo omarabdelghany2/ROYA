@@ -57,7 +57,7 @@ class Logo(models.Model):
     def save(self, *args, **kwargs):
         # If the instance already exists and the image is being changed
         if self.pk:
-            old_instance = Logos.objects.get(pk=self.pk)
+            old_instance = Logo.objects.get(pk=self.pk)
             if old_instance.image != self.image:  # Check if the image is being changed
                 if os.path.isfile(old_instance.image.path):
                     os.remove(old_instance.image.path)  # Delete the old image file

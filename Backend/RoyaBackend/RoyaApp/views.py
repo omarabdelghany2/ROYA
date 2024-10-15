@@ -190,3 +190,27 @@ def project_all(request):
             'message': str(e)
         }, status=500)
     
+
+
+def category_with_projects(request):
+    try:
+        # Get all categories from the database
+        categories = Category.objects.all()
+        # Serialize categories with their associated projects
+        categories_data = [
+            {
+                'name': category.name,
+                'projects': [
+                    {
+                        'id': project.id,
+                        'name': project.name,
+                    }
+                    for project in category.projects.all()  # Accessing the related 'projects' via related_name
+                ]
+            }
+            for category in categories
+        ]
+        # Return JSON response
+        return JsonResponse({'categories': categories_data}, status=200)
+    except Category.DoesNotExist:
+        return JsonResponse({'error': 'Category information does not exist'}, status=404)        
