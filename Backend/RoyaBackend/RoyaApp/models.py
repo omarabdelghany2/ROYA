@@ -5,7 +5,7 @@ from django.conf import settings
 from PIL import Image as PILImage
 from io import BytesIO
 from django.core.files.base import ContentFile
-
+from django.utils.timezone import now
 class Category(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False, unique=True)  # Name cannot be empty
     description = models.TextField(blank=False, null=False)                        # Description cannot be empty
@@ -44,32 +44,11 @@ class Category(models.Model):
                 os.remove(self.image.path)
         super().delete(*args, **kwargs)
 
-class Logo(models.Model):
-    name = models.CharField(max_length=255, blank=False, null=False, unique=True)  # Name cannot be empty
-    image = models.ImageField(upload_to='logos/', blank=False, null=False)    # Image cannot be empty
-    def __str__(self):
-        return self.name  # Display the name of the category in the admin panel
 
-<<<<<<< HEAD
-    def save(self, *args, **kwargs):
-        # If the instance already exists and the image is being changed
-        if self.pk:
-            old_instance = Logos.objects.get(pk=self.pk)
-            if old_instance.image != self.image:  # Check if the image is being changed
-                if os.path.isfile(old_instance.image.path):
-                    os.remove(old_instance.image.path)  # Delete the old image file
-        super().save(*args, **kwargs)  # Save the model instance
-    def delete(self, *args, **kwargs):
-        # Delete the associated image file when the instance is deleted
-        if self.image:
-            if os.path.isfile(self.image.path):
-                os.remove(self.image.path)
-        super().delete(*args, **kwargs)
-=======
+
 class Logo(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False, unique=True)  # Name cannot be empty
     image = models.ImageField(upload_to='logos/', blank=False, null=False)    # Image cannot be empty
->>>>>>> a8519f04358b927d686b2822d3473cc269e56a1b
 
     def __str__(self):
         return self.name  # Display the name of the category in the admin panel
@@ -122,6 +101,7 @@ class Project(models.Model):
     image = models.ImageField(upload_to='project_images/', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='projects')
     content = models.TextField(default='.', blank=True)  # New field with default value
+    created_at = models.DateTimeField(auto_now_add=True, null=True)  # Set current time as default for existing records
 
     def __str__(self):
         return f'{self.name} ({self.category.name})'

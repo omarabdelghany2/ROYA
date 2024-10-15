@@ -29,47 +29,12 @@ def category_list(request):
         return JsonResponse({'error': 'Category information does not exist'}, status=404)
 
 
-<<<<<<< HEAD
-    
-def category_with_projects(request):
-    try:
-        # Get all categories from the database
-        categories = Category.objects.all()
-
-        # Serialize categories with their associated projects
-        categories_data = [
-            {
-
-                'name': category.name,
-                'projects': [
-                    {
-                        'id': project.id,
-                        'name': project.name,
-
-                    }
-                    for project in category.projects.all()  # Accessing the related 'projects' via related_name
-                ]
-            }
-            for category in categories
-        ]
-
-        # Return JSON response
-        return JsonResponse({'categories': categories_data}, status=200)
-    except Category.DoesNotExist:
-        return JsonResponse({'error': 'Category information does not exist'}, status=404)        
-    
-def logos_list(request):
-    # Get all categories from the database
-    try:
-        logos = Logo.objects.all()
-=======
 def logos_list(request):
     # Get all categories from the database
 
     try:
         logos = Logo.objects.all()
 
->>>>>>> a8519f04358b927d686b2822d3473cc269e56a1b
         # Serialize categories into a list of dictionaries
         logos_data = [
             {
@@ -79,19 +44,11 @@ def logos_list(request):
             }
             for logo in logos
         ]
-<<<<<<< HEAD
-=======
-
->>>>>>> a8519f04358b927d686b2822d3473cc269e56a1b
         # Return JSON response
         return JsonResponse({'logos': logos_data},status=200)
     except Logo.DoesNotExist:
         return JsonResponse({'error': 'logo information does not exist'}, status=404)
-<<<<<<< HEAD
-
-=======
     
->>>>>>> a8519f04358b927d686b2822d3473cc269e56a1b
 
 
 
@@ -141,6 +98,7 @@ def project_list_by_category(request, category_name):
                 'image': project.image.url if project.image else None,  # Include image URL if exists
                 'category_name': project.category.name,  # Include category name
                 'content': project.content,
+                'createdAt':project.created_at,
             }
             for project in projects
         ]
@@ -176,6 +134,7 @@ def project_detail(request, id):
             'image': project.image.url if project.image else None,  # Include image URL if exists
             'category_name': project.category.name,  # Include category name
             'content': project.content,
+            'createdAt':project.created_at,
 
         }
 
@@ -209,6 +168,7 @@ def project_all(request):
                 'image': project.image.url if project.image else None,  # Include image URL if exists
                 'category_name': project.category.name,  # Include category name
                 'content': project.content,
+                'createdAt':project.created_at,
             }
             for project in projects
         ]
