@@ -10,6 +10,7 @@ class Category(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False, unique=True)  # Name cannot be empty
     description = models.TextField(blank=False, null=False)                        # Description cannot be empty
     image = models.ImageField(upload_to='categories/', blank=False, null=False)    # Image cannot be empty
+    long_description=models.TextField(blank=False,null=False,default='.')
 
     def __str__(self):
         return self.name  # Display the name of the category in the admin panel
@@ -42,7 +43,26 @@ class Category(models.Model):
                 os.remove(self.image.path)
         super().delete(*args, **kwargs)
 
+class Logo(models.Model):
+    name = models.CharField(max_length=255, blank=False, null=False, unique=True)  # Name cannot be empty
+    image = models.ImageField(upload_to='logos/', blank=False, null=False)    # Image cannot be empty
+    def __str__(self):
+        return self.name  # Display the name of the category in the admin panel
 
+    def save(self, *args, **kwargs):
+        # If the instance already exists and the image is being changed
+        if self.pk:
+            old_instance = Logos.objects.get(pk=self.pk)
+            if old_instance.image != self.image:  # Check if the image is being changed
+                if os.path.isfile(old_instance.image.path):
+                    os.remove(old_instance.image.path)  # Delete the old image file
+        super().save(*args, **kwargs)  # Save the model instance
+    def delete(self, *args, **kwargs):
+        # Delete the associated image file when the instance is deleted
+        if self.image:
+            if os.path.isfile(self.image.path):
+                os.remove(self.image.path)
+        super().delete(*args, **kwargs)
 
 
 class Contact(models.Model):
