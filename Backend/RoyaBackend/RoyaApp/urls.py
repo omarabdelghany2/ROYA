@@ -8,7 +8,10 @@ urlpatterns = [
     path('api/project-id/<int:id>/', views.project_detail, name='project_detail'),
     path('api/project-all/', views.project_all, name='project_detail'),
     path('api/logos/', views.logos_list, name='project_detail'),
+<<<<<<< HEAD
     path('api/headers/', views.category_with_projects, name='project_detail'),
+=======
+>>>>>>> a8519f04358b927d686b2822d3473cc269e56a1b
     # Add other URL patterns here if needed
 ]
     

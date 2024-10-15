@@ -29,6 +29,7 @@ def category_list(request):
         return JsonResponse({'error': 'Category information does not exist'}, status=404)
 
 
+<<<<<<< HEAD
     
 def category_with_projects(request):
     try:
@@ -61,6 +62,14 @@ def logos_list(request):
     # Get all categories from the database
     try:
         logos = Logo.objects.all()
+=======
+def logos_list(request):
+    # Get all categories from the database
+
+    try:
+        logos = Logo.objects.all()
+
+>>>>>>> a8519f04358b927d686b2822d3473cc269e56a1b
         # Serialize categories into a list of dictionaries
         logos_data = [
             {
@@ -70,11 +79,19 @@ def logos_list(request):
             }
             for logo in logos
         ]
+<<<<<<< HEAD
+=======
+
+>>>>>>> a8519f04358b927d686b2822d3473cc269e56a1b
         # Return JSON response
         return JsonResponse({'logos': logos_data},status=200)
     except Logo.DoesNotExist:
         return JsonResponse({'error': 'logo information does not exist'}, status=404)
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> a8519f04358b927d686b2822d3473cc269e56a1b
 
 
 
